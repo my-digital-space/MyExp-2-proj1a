@@ -48,6 +48,34 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!-- https://mvnrepository.com/artifact/org.jsonschema2pojo/jsonschema2pojo-maven-plugin -->
+			<plugin>
+				<groupId>org.jsonschema2pojo</groupId>
+				<artifactId>jsonschema2pojo-maven-plugin</artifactId>
+				<version>1.2.2</version>
+
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+
+				<configuration>
+					<!-- Location of your JSON schema files -->
+					<sourceDirectory>${basedir}/src/main/resources/schemas</sourceDirectory>
+					<!-- Target package for the generated POJOs -->
+					<targetPackage>com.myorg.generated</targetPackage>
+					<!-- Enable serializable implementation in the generated classes -->
+					<serializable>true</serializable>
+					<!-- for Long data type -->
+					<formatTypeMapping>
+						<int64>java.lang.Long</int64>
+					</formatTypeMapping>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
