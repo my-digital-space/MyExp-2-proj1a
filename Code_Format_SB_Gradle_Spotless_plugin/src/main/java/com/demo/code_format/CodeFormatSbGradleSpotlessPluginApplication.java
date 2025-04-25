@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CodeFormatSbGradleSpotlessPluginApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CodeFormatSbGradleSpotlessPluginApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(CodeFormatSbGradleSpotlessPluginApplication.class, args);
+  }
 }

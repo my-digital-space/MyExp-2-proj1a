@@ -1,13 +1,13 @@
-//package com.demo.code_format;
+// package com.demo.code_format;
 //
-//import org.junit.jupiter.api.Test;
-//import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 //
-//@SpringBootTest
-//class CodeFormatSbGradleSpotlessPluginApplicationTests {
+// @SpringBootTest
+// class CodeFormatSbGradleSpotlessPluginApplicationTests {
 //
 //	@Test
 //	void contextLoads() {
 //	}
 //
-//}
+// }
