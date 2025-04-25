@@ -11,6 +11,25 @@ pipeline {
             }
         }
 
+        stage('Code Format Check') {
+            steps {
+                echo '🔄 Code Format Check…'
+
+                def status = sh (
+                        script: '''
+                                mkdir -p build/reports/spotless && \
+                                gradle spotlessCheck > build/reports/spotless-report.txt 2>&1
+                                ''',
+                        returnStatus: true
+                )
+                if (status !=0) {
+                    archiveArtifacts artifacts: 'build/reports/spotless/*.txt', allowEmptyArchive: true
+                    error 'Spotless code format failed! Report is here: ' +
+                            'click Jenkins failed build number -> Status -> Build Artifacts'
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 echo '🔧 Running Gradle build (skipping tests)…'
