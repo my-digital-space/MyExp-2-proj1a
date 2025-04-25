@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Exit immediately if a command fails, or if a variable is undefined
+set -euo pipefail
+
+# Format Java code using Google Java Format
+gradle spotlessApply
+
+#This will list all files that were modified by spotlessApply
+FORMATTED_FILES=$(git diff --name-only)
+
+# If there are changes, stage them back into the commit
+if [[ -n "$FORMATTED_FILES" ]]; then
+  echo "Re-staging reformatted files:"
+  echo "$FORMATTED_FILES"
+  echo "$FORMATTED_FILES" | xargs git add
+else
+  echo "No formatting changes were made!"
+fi
+
+# If we got till here, everything succeeded - allow the commit
+exit 0;

@@ -31,8 +31,16 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+tasks.register('installGitHooks', Copy) {
+	from "$rootDir/git-hooks"
+	into "$rootDir/../.git/hooks" //into "$rootDir/.git/hooks"
+	filePermissions {
+		unix(0755)
+	}
+}
+
 tasks.named('build') {
-	dependsOn 'spotlessApply'
+	dependsOn 'installGitHooks', 'spotlessApply'
 }
 
 tasks.named('test') {
