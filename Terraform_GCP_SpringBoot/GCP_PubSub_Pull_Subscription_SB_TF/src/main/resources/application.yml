@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: GCP_PubSub_Pull_Subscription_SB_TF
+
+server:
+  port: 9191
+
+gcp.settings:
+  myPubSubConfig1:
+    projectId: myorg-${ENVIRONMENT}-demoproj1
+    topicName: my-topic-1-outbound-event-{ENVIRONMENT}
+    subscriptionName: my-topic-1-outbound-event-{ENVIRONMENT}-sub
+    threadCount: 200
+  myPubSubConfig2:
+    projectId: myorg-${ENVIRONMENT}-demoproj2
+    topicName: my-topic-2-outbound-event-{ENVIRONMENT}
+    subscriptionName: my-topic-2-outbound-event-{ENVIRONMENT}-sub
+    threadCount: 200
+
+
