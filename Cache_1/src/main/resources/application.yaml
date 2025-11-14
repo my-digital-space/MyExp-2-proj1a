@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: Cache_1
+
+server:
+  servlet:
+    context-path: /myapp/api/
+  port: 9191
+
