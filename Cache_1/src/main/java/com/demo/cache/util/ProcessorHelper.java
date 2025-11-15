@@ -2,6 +2,7 @@ package com.demo.cache.util;
 
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.caffeine.CaffeineCache;
 import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.stereotype.Component;
 
@@ -32,9 +33,26 @@ public class ProcessorHelper {
             Map<Object, Object> nativeMap = concurrentMapCache.getNativeCache(); // underlying map
             nativeMap.forEach((k, v) -> System.out.println(k + " = " + v));
             System.out.println("\n\n");
-        } else {
+        } else if (eventsCache instanceof CaffeineCache caffeineCache) {
+            var nativeCache = caffeineCache.getNativeCache().asMap(); // Get underlying cache
+            nativeCache.forEach((k, v) ->
+                    System.out.println("Key: " + k + ", Value: " + v)
+            );
+        }
+        else {
             System.out.println("Cache implementation does not support direct printing.");
         }
+    }
+
+    public Map<Object, Object> getCacheContents() {
+        if (eventsCache instanceof ConcurrentMapCache concurrentMapCache) {
+            return concurrentMapCache.getNativeCache();
+        }  else if (eventsCache instanceof CaffeineCache caffeineCache) {
+            return caffeineCache.getNativeCache().asMap();
+        } else {
+            System.out.println("Cache implementation does not support direct Map conversion.");
+        }
+        return null;
     }
 
 }

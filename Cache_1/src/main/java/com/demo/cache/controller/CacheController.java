@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/cache")
 public class CacheController {
@@ -24,5 +26,10 @@ public class CacheController {
     @GetMapping(value = "/test/{eventId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> getCacheResponse(@PathVariable("eventId") String eventId) {
         return cacheService.processRequest(eventId);
+    }
+
+    @GetMapping(value = "/getCacheContents", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<Object, Object>> getCacheContents() {
+        return cacheService.getCacheContents();
     }
 }

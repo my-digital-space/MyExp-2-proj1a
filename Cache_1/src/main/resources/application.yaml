@@ -7,3 +7,11 @@ server:
     context-path: /myapp/api/
   port: 9191
 
+cache:
+  caches:
+    myEventsCache:
+      ttl: 2m # Duration format: 30s, 10m, 2h, PT10M, etc.
+      size: 3 # size here refers to the number cache entries
+    myEventsCache2:
+      ttl: 10m
+      size: 100000

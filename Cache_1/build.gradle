@@ -22,6 +22,17 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// lombok dependencies
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+
+	// added the cache caffeine dependency
+	implementation 'com.github.ben-manes.caffeine:caffeine'
+	// we also need this:
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
 }
 
 tasks.named('test') {

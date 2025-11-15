@@ -4,6 +4,8 @@ import com.demo.cache.util.ProcessorHelper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class CacheService {
 
@@ -36,5 +38,10 @@ public class CacheService {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public ResponseEntity<Map<Object, Object>> getCacheContents() {
+        Map<Object, Object> cacheContents = processorHelper.getCacheContents();
+        return ResponseEntity.ok(cacheContents);
     }
 }
